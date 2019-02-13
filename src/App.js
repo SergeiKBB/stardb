@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Header from './components/header/HeaderComponent';
+import Planet from './features/planet/PlanetContainer';
+
+const obj = {
+  "name": "Alderaan",
+  "rotation_period": "24",
+  "orbital_period": "364",
+  "diameter": "12500",
+  "climate": "temperate",
+  "gravity": "1 standard",
+  "terrain": "grasslands, mountains",
+  "surface_water": "40",
+  "population": "2000000000",
+  "residents": [
+    "https://swapi.co/api/people/5/",
+    "https://swapi.co/api/people/68/",
+    "https://swapi.co/api/people/81/"
+  ]
+};
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <Header title='Star Wars UI'/>
+        <Planet {...obj}/>
       </div>
     );
   }
