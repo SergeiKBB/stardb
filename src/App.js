@@ -1,31 +1,20 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Header from './components/header/HeaderComponent';
-import Planet from './features/planet/PlanetContainer';
-
-const obj = {
-  "name": "Alderaan",
-  "rotation_period": "24",
-  "orbital_period": "364",
-  "diameter": "12500",
-  "climate": "temperate",
-  "gravity": "1 standard",
-  "terrain": "grasslands, mountains",
-  "surface_water": "40",
-  "population": "2000000000",
-  "residents": [
-    "https://swapi.co/api/people/5/",
-    "https://swapi.co/api/people/68/",
-    "https://swapi.co/api/people/81/"
-  ]
-};
+import PaginationPlanets from './features/paginationPlanets/paginationPlanetsContainer';
+import Person from './features/person/PersonContainer';
+import styles from './app.module.scss';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Header title='Star Wars UI'/>
-        <Planet {...obj}/>
-      </div>
+      <Router>
+        <div className={`${styles.app}`}>
+          <Header title='Star Wars UI'/>
+          <Route exact path='/' component={PaginationPlanets} />
+          <Route path='/people/:id' component={Person} />
+        </div>
+      </Router>
     );
   }
 }
