@@ -1,5 +1,4 @@
-export function urlParser(arg) {
-debugger
+export function getIdParser(arg) {
       const reg = /\d+/;
-      return arg.match(reg);
+      return arg.match(reg).join('');
 }

@@ -4,7 +4,6 @@ import {
 } from '../actions/planetsActions';
 import { fetchPlanets } from '../helpers/api';
 
-
 export function* getPlanetsAsync({ payload: id }) {
   try {
     yield put(getPlanetsBegin());
@@ -14,7 +13,6 @@ export function* getPlanetsAsync({ payload: id }) {
     yield put(getPlanetsError(error))
   }
 }
-
 
 export function* watchGetPlanets() {
   yield takeLatest([getPlanets], getPlanetsAsync);
