@@ -5,24 +5,14 @@ import {
 } from '../actions/peolpeActions';
 
 const initialState = {
-  list: [],
+  list: {},
   load: false,
-  error: null,
-  residents: {
-    list: [],
-    load: false,
-    error: null
-  }
+  error: null
 };
 
 export default handleActions({
-  [getPeopleBegin]: state => ({...state, load: true}),
-  [getPeopleSuccessful]: (state, { payload }) => ({...state, list: payload, load: false}),
-  [getPeopleError]: (state, { payload }) => ({...state, error: payload}),
-  [getPersonBegin]: state => ({...state, residents: { ...state.residents, load: true }}),
-  [getPersonSuccessful]: (state, { payload }) => console.log(payload),
-    //({...state, residents: { ...state.residents, load: false }}),
-  [getPersonBegin]: state => ({...state, residents: { ...state.residents, load: true }}),
+  [getPersonBegin]: state => ({...state, load: true }),
+  [getPersonSuccessful]: (state, { payload }) => ({...state, load: false, list: { ...state.list, [payload.url]: { ...payload }}}),
   },
   initialState
 );

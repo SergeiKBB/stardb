@@ -1,29 +1,31 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getPeople } from '../../actions/peolpeActions';
+import { getPerson } from '../../actions/peolpeActions';
 import Person from './PersonComponent';
 import { personSelector } from '../../selectors/peopleSelectors';
 
 class PersonContainer extends Component {
 
   componentDidMount() {
-    const { onGetPeople } = this.props;
-    onGetPeople();
+    const { onGetPerson, personId, person } = this.props;
+    if(!person) {
+      onGetPerson(personId);
+    }
   }
 
   render() {
     const { person } = this.props;
-    console.log(person);
-    return <Person person={person} />
+    return person ? <Person person={person} /> : null
   }
 }
 
-const mapStateToProps = (state, { match }) => ({
-  person: personSelector(state, match.params.id)
+const mapStateToProps = (state, { match: { params: { id }} }) => ({
+  personId: id,
+  person: personSelector(state, id)
 });
 
 const mapDispatchToProps = dispatch => ({
-  onGetPeople: () => dispatch(getPeople())
+  onGetPerson: (id) => dispatch(getPerson(id))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(PersonContainer);

@@ -1,0 +1,17 @@
+.person {
+  width: 20%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: right;
+  margin: 0 auto;
+}
+
+.list {
+  width: 100%;
+}
+
+.back {
+  width: 30%;
+  display: inline-block;
+  margin: 10px 10px 0 auto;
+}

@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getResidents } from '../../actions/residentsActions';
-import { residentsSelectorByPlanet } from "../../selectors/residentsSelectors";
+import { residentsSelectorByPlanet } from "../../selectors/planetsSelectors";
 import ResidentsListComponent from './ResidentsListComponent';
 
 class ResidentsList extends Component {
 
   componentDidMount() {
-    const { getResidents } = this.props;
-    getResidents();
+    const { getResidents, residents } = this.props;
+    if(!residents || !residents.length) {
+      getResidents();
+    }
   };
 
   render() {

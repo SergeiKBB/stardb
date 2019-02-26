@@ -4,6 +4,9 @@ import {peopleSelector} from './peopleSelectors';
 export const planetsSelector = state => state.planets.list;
 export const countSelector = state => state.planets.count;
 
+export const residentsSelector = state => state.residents.list;
+export const residentsSelectorByPlanet = (state, planetUrl) => state.planets.residents.list[planetUrl];
+
 export const planetsPeopleSelector = createSelector(
   peopleSelector,
   planetsSelector,
